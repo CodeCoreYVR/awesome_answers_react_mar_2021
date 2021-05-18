@@ -1,6 +1,6 @@
 import React from 'react'
 import QuestionDetails from './QuestionDetails'
-import AnswerDetails from './AnswerDetails'
+import AnswerList from './AnswerList'
 
 // To compose our application, we will create components that nest
 // other components. Just as a function in JS can return only a single
@@ -19,11 +19,7 @@ function QuestionShowPage() {
         view_count={100}
         created_at={new Date().toLocaleString()}
       />
-      <AnswerDetails 
-        body="White"
-        author={{ full_name: "Steve Jobs" }}
-        created_at={new Date().toLocaleString()}
-      />
+      <AnswerList />
     </main>
   )
 }
