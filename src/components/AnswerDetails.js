@@ -14,7 +14,7 @@ function AnswerDetails({ body, author, created_at }) {
       <div>
         <small>By {author.full_name}</small>
         <small style={{ marginLeft: '20px' }}>
-          Answered {created_at}
+          Answered {created_at} ago
         </small>
       </div>
     </div>

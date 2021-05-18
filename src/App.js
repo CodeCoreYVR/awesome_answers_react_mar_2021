@@ -3,6 +3,7 @@
 // will be undefined
 import React from 'react';
 import QuestionShowPage from './components/QuestionShowPage'
+import QuestionIndexPage from './components/QuestionIndexPage'
 
 // We create a component that acts as the root element of all our
 // other components. This is the component that will be rendered
@@ -13,6 +14,7 @@ import QuestionShowPage from './components/QuestionShowPage'
 function App() {
   return (
     <div className="container">
+      <QuestionIndexPage />
       <QuestionShowPage />
     </div>
   )

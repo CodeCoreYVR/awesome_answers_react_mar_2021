@@ -21,7 +21,7 @@ function QuestionDetails({ title, body, author, view_count, created_at }) {
       <div>
         <small>View Count: {view_count}</small>
         <small style={{ marginLeft: '20px' }}>
-          Asked {created_at}
+          Asked {created_at} ago
         </small>
       </div>
     </div>
