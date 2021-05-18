@@ -8,28 +8,34 @@ import reportWebVitals from './reportWebVitals';
 // which are created with React.createElement() or JSX tags. Our
 // component's names must be in PascalCase, otherwise it will look
 // for an plain HTML tag when we use it e.g. <QuestionDetails />
-function QuestionDetails() {
+
+// To use expressions in JSX, such as evaluating properties on props,
+// put expression in enclosing {}
+function QuestionDetails({ title, body, author, view_count, created_at }) {
   return (
     <div>
-      <h2>What is your favourite colour?</h2>
-      <p>Green, Blue, Purple, etc...</p>
+      <h2>{title}</h2>
+      <p>{body}</p>
+      <p>By: {author.full_author}</p>
       <div>
-        <small>View Count: 80 times</small>
-        <small>Asked 1 Month ago</small>
+        <small>View Count: {view_count}</small>
+        <br />
+        <small>Asked {created_at}</small>
       </div>
     </div>
   )
 }
 
-function AnswerDetails() {
+function AnswerDetails({ body, author, created_at }) {
   return (
     <div>
       <p>
-        My favourite colour is blue
+        {body}
       </p>
       <div>
-        <small>By Bill Gates</small>
-        <small>Answered 2 weeks ago</small>
+        <small>By {author.full_name}</small>
+        <br />
+        <small>Answered {created_at}</small>
       </div>
     </div>
   )
@@ -45,8 +51,18 @@ function AnswerDetails() {
 function QuestionShowPage() {
   return (
     <main>
-      <QuestionDetails />
-      <AnswerDetails />
+      <QuestionDetails 
+        title="What is your favourite colour?"
+        body="Red, Blue, Pink, etc..."
+        author={{ full_name: "Mark Zuckerberg" }}
+        view_count={100}
+        created_at={new Date().toLocaleString()}
+      />
+      <AnswerDetails 
+        body="White"
+        author={{ full_name: "Steve Jobs" }}
+        created_at={new Date().toLocaleString()}
+      />
     </main>
   )
 }
