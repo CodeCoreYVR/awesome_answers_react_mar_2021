@@ -11,12 +11,18 @@ function QuestionDetails({ title, body, author, view_count, created_at }) {
   return (
     <div>
       <h2>{title}</h2>
-      <p>{body}</p>
-      <p>By: {author.full_author}</p>
+      <p 
+        style={{
+          fontStyle: 'Roboto',
+          fontSize: '24px'
+        }}
+      >{body}</p>
+      <p>By: {author.full_name}</p>
       <div>
         <small>View Count: {view_count}</small>
-        <br />
-        <small>Asked {created_at}</small>
+        <small style={{ marginLeft: '20px' }}>
+          Asked {created_at}
+        </small>
       </div>
     </div>
   )
