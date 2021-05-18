@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+// Whenever you use JSX in a file, you must import React,
+// otherwise when JSX converts to React.createElement, "React" 
+// will be undefined
+import React from 'react';
+import QuestionShowPage from './components/QuestionShowPage'
 
+// We create a component that acts as the root element of all our
+// other components. This is the component that will be rendered
+// using ReactDOM.
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <QuestionShowPage />
     </div>
-  );
+  )
 }
 
 export default App;
