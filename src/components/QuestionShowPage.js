@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import QuestionDetails from './QuestionDetails'
 import AnswerList from './AnswerList'
+import questionData from '../data/questionData'
 
 // To compose our application, we will create components that nest
 // other components. Just as a function in JS can return only a single
@@ -9,19 +10,28 @@ import AnswerList from './AnswerList'
 // However, you can nest as many components inside as you want,
 // just like how you can nest as many objects as you want 
 // inside of the object you return.
-function QuestionShowPage() {
-  return (
-    <main>
-      <QuestionDetails 
-        title="What is your favourite colour?"
-        body="Red, Blue, Pink, etc..."
-        author={{ full_name: "Mark Zuckerberg" }}
-        view_count={100}
-        created_at={new Date().toLocaleString()}
-      />
-      <AnswerList />
-    </main>
-  )
+class QuestionShowPage extends Component {
+  constructor(props){
+    super(props);
+    this.state = questionData
+  }
+  render() {
+    const { title, body, author, view_count, created_at, answers } = this.state
+    return (
+      <main>
+        <QuestionDetails 
+          title={title}
+          body={body}
+          author={ author }
+          view_count={ view_count }
+          created_at={created_at}
+        />
+        <AnswerList 
+        answers={ answers }
+        />
+      </main>
+    )
+  }
 }
 
-export default QuestionShowPage
+export default QuestionShowPage;
