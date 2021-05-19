@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react'
 import React, { Component } from 'react'
 import questionsData from '../data/questionsData'
+import NewQuestionForm from './NewQuestionForm'
 
 // We use map to return an array of React elements (created using JSX here) 
 // inside of {}, React will render that list of items. Each React 
@@ -11,6 +12,21 @@ class QuestionIndexPage extends Component {
   constructor(props) {
     super(props);
     this.state = { questions : questionsData }
+    this.createQuestion = this.createQuestion.bind(this)
+  }
+
+  createQuestion(params){
+    this.setState((state) => {
+      return {
+        questions: [
+          ...state.questions,
+          {
+            id:  Math.max(...state.questions.map(q => q.id)) + 1,
+            ...params
+          }
+        ]
+      }
+    })
   }
 
   deleteQuestion(id){
@@ -25,6 +41,7 @@ class QuestionIndexPage extends Component {
   render(){
     return (
       <main>
+        <NewQuestionForm createQuestion={this.createQuestion} />
         <h1>Questions</h1>
         <ul 
           style={{
