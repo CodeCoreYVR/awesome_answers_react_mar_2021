@@ -14,9 +14,19 @@ class QuestionShowPage extends Component {
   constructor(props){
     super(props);
     this.state = questionData
+    this.deleteAnswer = this.deleteAnswer.bind(this)
   }
+
+  deleteAnswer(id){
+    this.setState((state) => {
+      return {
+        answers: state.answers.filter(a => a.id !== id)
+      }
+    })
+  }
+
   render() {
-    const { title, body, author, view_count, created_at, answers } = this.state
+    const { title, body, author, view_count, created_at } = this.state
     return (
       <main>
         <QuestionDetails 
@@ -27,7 +37,8 @@ class QuestionShowPage extends Component {
           created_at={created_at}
         />
         <AnswerList 
-        answers={ answers }
+        answers={ this.state.answers }
+        deleteAnswer = { this.deleteAnswer }
         />
       </main>
     )

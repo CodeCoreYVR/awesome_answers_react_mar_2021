@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AnswerDetails({ body, author, created_at }) {
+function AnswerDetails({ body, author, created_at, id, deleteAnswer }) {
   return (
     <div>
       <p
@@ -17,6 +17,7 @@ function AnswerDetails({ body, author, created_at }) {
           Answered {created_at} ago
         </small>
       </div>
+      <button onClick={ () => deleteAnswer(id) }>Delete</button>
     </div>
   )
 }

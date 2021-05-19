@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
 import React, { Component } from 'react'
-import questions from '../data/questions'
+import questionsData from '../data/questionsData'
 
 // We use map to return an array of React elements (created using JSX here) 
 // inside of {}, React will render that list of items. Each React 
@@ -10,8 +10,18 @@ import questions from '../data/questions'
 class QuestionIndexPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { questions : questions }
+    this.state = { questions : questionsData }
   }
+
+  deleteQuestion(id){
+    this.setState((state) => {
+      return {
+        questions: state.questions.filter(q => q.id !== id)
+      }
+    }
+    )
+  }
+
   render(){
     return (
       <main>
@@ -22,9 +32,10 @@ class QuestionIndexPage extends Component {
             paddingLeft: 0,
           }}
         >
-          {questions.map(({ id, title }) => (
+          {this.state.questions.map(({ id, title }) => (
             <li key={id}>
               <a href="#">{id} - {title}</a>
+              <button onClick={() => this.deleteQuestion(id)}>Delete</button>
             </li>
           ))}
         </ul>
