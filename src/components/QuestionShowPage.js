@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import QuestionDetails from './QuestionDetails'
 import AnswerList from './AnswerList'
-import questionData from '../data/questionData'
+import { Question } from '../requests';
+// import questionData from '../data/questionData'
 
 // To compose our application, we will create components that nest
 // other components. Just as a function in JS can return only a single
@@ -13,9 +14,21 @@ import questionData from '../data/questionData'
 class QuestionShowPage extends Component {
   constructor(props){
     super(props);
-    this.state = questionData
+    this.state = { question : {} }
     this.deleteAnswer = this.deleteAnswer.bind(this)
   }
+
+  componentDidMount(){
+    Question.show(20) // just hard coding for now
+    .then((question) => {
+      this.setState((state) => {
+        return {
+          question: question
+        }
+      })
+    })
+  }
+
 
   deleteAnswer(id){
     this.setState((state) => {
@@ -36,6 +49,7 @@ class QuestionShowPage extends Component {
           view_count={ view_count }
           created_at={created_at}
         />
+        <h2>Answers:</h2>
         <AnswerList 
         answers={ this.state.answers }
         deleteAnswer = { this.deleteAnswer }
@@ -46,3 +60,4 @@ class QuestionShowPage extends Component {
 }
 
 export default QuestionShowPage;
+

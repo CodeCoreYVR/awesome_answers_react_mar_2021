@@ -6,6 +6,7 @@ import QuestionShowPage from './components/QuestionShowPage'
 import QuestionIndexPage from './components/QuestionIndexPage'
 import CurrentDateTime from './components/CurrentDateTime'
 import { Session } from './requests'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 // We create a component that acts as the root element of all our
 // other components. This is the component that will be rendered
@@ -42,7 +43,12 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <QuestionIndexPage />
+        <BrowserRouter>
+          <Route exact path='/questions'>
+            <QuestionIndexPage/>
+          </Route>
+          <Route path='/questions/:id' component={QuestionShowPage}/>
+        </BrowserRouter>
       </div>
     )
   }

@@ -6,10 +6,14 @@ import AnswerDetails from './AnswerDetails';
 // for each answer's "created_at". We can't render JS objects
 // as children, therefore we convert it to a string using 
 // toLocaleString()
-function AnswerList({answers, deleteAnswer }) {
+function AnswerList(props, deleteAnswer) {
+  const answers = props.answers
   return (
     <div>
-      {answers.map(({ body, author, created_at, id }, index) => (
+      {
+        answers? //this ternanry operator checks if answers exist. if true, carry on, if false return null but won't crash app
+      
+      answers.map(({ body, author, created_at, id }, index) => (
         <AnswerDetails
           key={index}
           id={id}
@@ -18,9 +22,13 @@ function AnswerList({answers, deleteAnswer }) {
           created_at={created_at.toLocaleString()}
           deleteAnswer={deleteAnswer}
         />
-      ))}
+      ))
+      :
+      null
+      }
     </div>
   )
 }
 
 export default AnswerList 
+

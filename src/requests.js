@@ -31,7 +31,7 @@ export const Question = {
             body: JSON.stringify(params)
         }).then((res) => res.json());
     },
-    one(id) {
+    show(id) {
       return fetch(`${BASE_URL}/questions/${id}`)
         .then(res => res.json())
     },
