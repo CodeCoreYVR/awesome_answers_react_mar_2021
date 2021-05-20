@@ -1,7 +1,8 @@
 import { render } from '@testing-library/react'
 import React, { Component } from 'react'
-import questionsData from '../data/questionsData'
+// import questionsData from '../data/questionsData'
 import NewQuestionForm from './NewQuestionForm'
+import { Question } from '../requests'
 
 // We use map to return an array of React elements (created using JSX here) 
 // inside of {}, React will render that list of items. Each React 
@@ -11,8 +12,19 @@ import NewQuestionForm from './NewQuestionForm'
 class QuestionIndexPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { questions : questionsData }
+    this.state = { questions : [] }
     this.createQuestion = this.createQuestion.bind(this)
+  }
+
+  componentDidMount() {
+    Question.index()
+    .then((questions) => {
+      this.setState((state) => {
+        return {
+          questions: questions
+        }
+      })
+    })
   }
 
   createQuestion(params){
