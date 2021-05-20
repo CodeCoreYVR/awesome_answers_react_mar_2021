@@ -19,7 +19,7 @@ class QuestionShowPage extends Component {
   }
 
   componentDidMount(){
-    Question.show(20) // just hard coding for now
+    Question.show(this.props.match.params.id) // just hard coding for now
     .then((question) => {
       this.setState((state) => {
         return {
@@ -39,7 +39,7 @@ class QuestionShowPage extends Component {
   }
 
   render() {
-    const { title, body, author, view_count, created_at } = this.state
+    const { title, body, author, view_count, created_at } = this.state.question
     return (
       <main>
         <QuestionDetails 

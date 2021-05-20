@@ -7,7 +7,7 @@ import React from 'react'
 
 // To use expressions in JSX, such as evaluating properties on props,
 // put expression in enclosing {}
-function QuestionDetails({ title, body, author, view_count, created_at }) {
+function QuestionDetails({ title, body, author, view_count, created_at }) { 
   return (
     <div>
       <h2>{title}</h2>
@@ -28,4 +28,4 @@ function QuestionDetails({ title, body, author, view_count, created_at }) {
   )
 }
 
-export default QuestionDetails
+export default QuestionDetails;
