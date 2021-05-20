@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import QuestionShowPage from './components/QuestionShowPage'
 import QuestionIndexPage from './components/QuestionIndexPage'
 import CurrentDateTime from './components/CurrentDateTime'
+import { Session } from './requests'
 
 // We create a component that acts as the root element of all our
 // other components. This is the component that will be rendered
@@ -19,8 +20,23 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      clocksCount: [1]
+      clocksCount: [1],
+      user: null
     }
+  }
+
+  componentDidMount () {
+    Session.create({
+      email: 'js@winterfell.gov',
+      password: 'supersecret'
+    })
+    .then(user => {
+      this.setState((state) => {
+        return {
+          user: user
+        }
+      })
+    })
   }
 
   render() {
