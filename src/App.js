@@ -1,9 +1,10 @@
 // Whenever you use JSX in a file, you must import React,
 // otherwise when JSX converts to React.createElement, "React" 
 // will be undefined
-import React from 'react';
+import React, {Component} from 'react';
 import QuestionShowPage from './components/QuestionShowPage'
 import QuestionIndexPage from './components/QuestionIndexPage'
+import CurrentDateTime from './components/CurrentDateTime'
 
 // We create a component that acts as the root element of all our
 // other components. This is the component that will be rendered
@@ -11,13 +12,28 @@ import QuestionIndexPage from './components/QuestionIndexPage'
 
 // "className" is used to add classes to elements. We can't use 
 // "class" because it's a reserved word in JS to create classes.
-function App() {
-  return (
-    <div className="container">
-      <QuestionIndexPage />
-      <QuestionShowPage />
-    </div>
-  )
+
+{/* <QuestionIndexPage />
+<QuestionShowPage /> */}
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      clocksCount: [1]
+    }
+  }
+
+  render() {
+    return (
+      <div className="container">
+        {
+          this.state.clocksCount.map((c, i) => {
+            return <CurrentDateTime key={i} shouldShowTime={true}/>
+          })
+        }
+      </div>
+    )
+  }
 }
 
 export default App;
