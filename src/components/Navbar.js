@@ -6,7 +6,7 @@ const Navbar = (props) => {
    <nav>
      <NavLink to='/questions'>Questions Index</NavLink>
      |
-     <NavLink to='/questions/new'>Questions New</NavLink>
+     <NavLink to='/questions/new'>New Question</NavLink>
    </nav>
  )
 }

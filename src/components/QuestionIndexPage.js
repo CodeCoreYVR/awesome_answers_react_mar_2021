@@ -35,7 +35,8 @@ class QuestionIndexPage extends Component {
           {
             id:  Math.max(...state.questions.map(q => q.id)) + 1,
             ...params
-          }
+          },
+          ...state.questions
         ]
       }
     })
@@ -53,7 +54,6 @@ class QuestionIndexPage extends Component {
   render(){
     return (
       <main>
-        <NewQuestionForm createQuestion={this.createQuestion} />
         <h1>Questions</h1>
         <ul 
           style={{
