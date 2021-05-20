@@ -7,6 +7,7 @@ import QuestionIndexPage from './components/QuestionIndexPage'
 import CurrentDateTime from './components/CurrentDateTime'
 import { Session } from './requests'
 import { BrowserRouter, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
 
 // We create a component that acts as the root element of all our
 // other components. This is the component that will be rendered
@@ -44,6 +45,7 @@ class App extends Component {
     return (
       <div className="container">
         <BrowserRouter>
+          <Navbar />
           <Route exact path='/questions'>
             <QuestionIndexPage/>
           </Route>
