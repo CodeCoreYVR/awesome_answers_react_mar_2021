@@ -1,7 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Session } from '../requests'
 
-const Navbar = ({ currentUser }) => {
+const Navbar = ({ currentUser, onSignOut } ) => {
+  const handleSignOut = () => {
+    Session.destroy().then(() => {
+      onSignOut()
+    })
+  }
+
   return(
     <nav>
       <NavLink to='/questions'>Questions Index</NavLink>
@@ -15,6 +22,8 @@ const Navbar = ({ currentUser }) => {
           <NavLink to='/questions/new'>New Question</NavLink>
           -
           <span>Welcome, {currentUser.full_name}</span>
+          -
+          <button onClick={handleSignOut}>Sign Out</button>
         </React.Fragment>
       ) : (
         <NavLink to='/sign_in'>Sign In</NavLink>

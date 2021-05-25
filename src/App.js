@@ -52,11 +52,17 @@ class App extends Component {
     })
   }
 
+  onSignOut = () => {
+    this.setState({
+      user: null
+    })
+  }
+
   render() {
     return (
       <div className="container">
         <BrowserRouter>
-          <Navbar currentUser={this.state.user} />
+          <Navbar currentUser={this.state.user} onSignOut={this.onSignOut} />
           <Switch>
             <Route 
               exact 
