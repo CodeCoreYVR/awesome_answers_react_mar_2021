@@ -26,7 +26,11 @@ const Navbar = ({ currentUser, onSignOut } ) => {
           <button onClick={handleSignOut}>Sign Out</button>
         </React.Fragment>
       ) : (
-        <NavLink to='/sign_in'>Sign In</NavLink>
+        <> 
+          <NavLink to='/sign_in'>Sign In</NavLink>
+          -
+          <NavLink to='/sign_up'>Sign Up</NavLink>
+        </>
       ) }
     </nav>
   )

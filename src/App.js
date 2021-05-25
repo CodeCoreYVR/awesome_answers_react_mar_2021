@@ -11,6 +11,7 @@ import Navbar from './components/Navbar'
 import NewQuestionPage from './components/NewQuestionPage'
 import SignInPage from './components/SignInPage'
 import AuthRoute from './components/AuthRoute'
+import SignUpPage from './components/SignUpPage'
 
 // We create a component that acts as the root element of all our
 // other components. This is the component that will be rendered
@@ -75,6 +76,11 @@ class App extends Component {
               // component with the props passed to it. "routeProps" represents
               // all the routing props, make sure to pass them to the component as well
               render={(routeProps) => <SignInPage {...routeProps} onSignIn={this.getCurrentUser} />} 
+            />
+            <Route 
+              exact
+              path='/sign_up'
+              render={(routeProps) => <SignUpPage {...routeProps} onSignUp={this.getCurrentUser} />}
             />
             <Route exact path='/questions'>
               <QuestionIndexPage/>
