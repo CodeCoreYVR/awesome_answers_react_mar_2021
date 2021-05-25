@@ -5,10 +5,11 @@ import React, {Component} from 'react';
 import QuestionShowPage from './components/QuestionShowPage'
 import QuestionIndexPage from './components/QuestionIndexPage'
 import CurrentDateTime from './components/CurrentDateTime'
-import { Session } from './requests'
+import { User } from './requests'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import NewQuestionPage from './components/NewQuestionPage'
+import SignInPage from './components/SignInPage'
 
 // We create a component that acts as the root element of all our
 // other components. This is the component that will be rendered
@@ -29,16 +30,25 @@ class App extends Component {
   }
 
   componentDidMount () {
-    Session.create({
-      email: 'js@winterfell.gov',
-      password: 'supersecret'
-    })
-    .then(user => {
-      this.setState((state) => {
-        return {
-          user: user
-        }
-      })
+    this.getCurrentUser()
+  }
+
+  // When calling "this.setState", we always want the "this" keyword
+  // to this class itself. If we call it from another component, "this" will
+  // lose its context, e.g. 
+  // <SignInPage onSignIn={this.getCurrentUser} />
+  // We need to either use the ".bind" method in the constructor or
+  // define it like as a class arrow function to ensure that "this" 
+  // always refers back to the class
+  getCurrentUser = () => {
+    return User.current().then(user => {
+      // This is the safe naviagtion operator
+      // Similar to user && user.id
+      if (user?.id) { 
+        this.setState(state => {
+          return { user }
+        })
+      }
     })
   }
 
@@ -46,8 +56,19 @@ class App extends Component {
     return (
       <div className="container">
         <BrowserRouter>
-          <Navbar />
+          <Navbar currentUser={this.state.user} />
           <Switch>
+            <Route 
+              exact 
+              path='/sign_in' 
+              // Anytime we want to render a component that require some props,
+              // and that component is being rendered by a Route component
+              // then the way to pass props is to use the "render" prop
+              // It takes a function as an argument and the function returns the
+              // component with the props passed to it. "routeProps" represents
+              // all the routing props, make sure to pass them to the component as well
+              render={(routeProps) => <SignInPage {...routeProps} onSignIn={this.getCurrentUser} />} 
+            />
             <Route exact path='/questions'>
               <QuestionIndexPage/>
             </Route>
