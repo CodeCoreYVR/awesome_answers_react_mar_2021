@@ -12,6 +12,7 @@ import NewQuestionPage from './components/NewQuestionPage'
 import SignInPage from './components/SignInPage'
 import AuthRoute from './components/AuthRoute'
 import SignUpPage from './components/SignUpPage'
+import NotFoundPage from './components/NotFoundPage'
 
 // We create a component that acts as the root element of all our
 // other components. This is the component that will be rendered
@@ -94,6 +95,7 @@ class App extends Component {
               component={NewQuestionPage}
             />
             <Route path='/questions/:id' component={QuestionShowPage}/>
+            <Route component={NotFoundPage}/>
           </Switch>
         </BrowserRouter>
       </div>
