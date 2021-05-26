@@ -14,7 +14,7 @@ class QuestionIndexPage extends Component {
   constructor(props) {
     super(props);
     this.state = { questions : [] }
-    this.createQuestion = this.createQuestion.bind(this)
+    // this.createQuestion = this.createQuestion.bind(this)
   }
 
   componentDidMount() {
@@ -28,20 +28,20 @@ class QuestionIndexPage extends Component {
     })
   }
 
-  createQuestion(params){
-    this.setState((state) => {
-      return {
-        questions: [
-          ...state.questions,
-          {
-            id:  Math.max(...state.questions.map(q => q.id)) + 1,
-            ...params
-          },
-          ...state.questions
-        ]
-      }
-    })
-  }
+  // createQuestion(params){
+  //   this.setState((state) => {
+  //     return {
+  //       questions: [
+  //         ...state.questions,
+  //         {
+  //           id:  Math.max(...state.questions.map(q => q.id)) + 1,
+  //           ...params
+  //         },
+  //         ...state.questions
+  //       ]
+  //     }
+  //   })
+  // }
 
   deleteQuestion(id){
     this.setState((state) => {

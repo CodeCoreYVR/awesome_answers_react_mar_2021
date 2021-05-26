@@ -1,6 +1,7 @@
 import React from 'react'
+import FormErrors from './FormErrors'
 
-const NewQuestionForm = ({createQuestion}) => {
+const NewQuestionForm = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget)
@@ -8,18 +9,20 @@ const NewQuestionForm = ({createQuestion}) => {
             title: formData.get('title'),
             body: formData.get('body')
         }
-        createQuestion(params)
+        props.createQuestion(params)
     }
     return(
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="title">Title</label>
-                <br/>
                 <input name="title" id="title"/>
+                <FormErrors forField="title" errors={props.errors}/>
+                <br/>
             </div>
             <div>
                 <label htmlFor="body">Body</label>
                 <textarea name="body" id="body"/>
+                <FormErrors forField="body" errors={props.errors}/>
                 <br/>
             </div>
             <div>
